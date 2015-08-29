@@ -85,5 +85,5 @@ Events.on(engine, 'tick', function (event) {
 
 });
 
-$('#newBox').on('click', newBox)
+// $('#newBox').on('click', newBox)
 $(document).ready(phyEngine);
