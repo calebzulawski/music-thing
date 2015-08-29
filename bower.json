@@ -1,0 +1,10 @@
+{
+  "name": "music-thing",
+  "version": "0.0.1",
+  "dependencies": {
+    "flocking": "",
+    "matter-js": "~0.8.0",
+    "jquery": ""
+  },
+  "private": true
+}
