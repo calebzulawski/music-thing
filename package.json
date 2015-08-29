@@ -1,0 +1,14 @@
+{
+    "name": "music-thing",
+    "description": "Some app thing",
+    "version": "0.0.1",
+    "author": "Caleb Zulawski and Nick Ellsworth",
+    "dependencies": {
+        "infusion": "git://github.com/fluid-project/infusion.git",
+        "flocking": "git://github.com/colinbdclark/Flocking.git"
+    },
+    "main": "index.js",
+    "engines": {
+        "node" : "0.10.x"
+    }
+}
