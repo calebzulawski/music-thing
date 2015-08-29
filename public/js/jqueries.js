@@ -2,7 +2,8 @@
 var changeSelectMenu;
 $(document).ready(function () {
 
-	$('#newItemSelection').on('change', newItem)
+
+	$('#newItemSelection').on('change', function () {})
 		// $('#newCannon').on('click', newCannon)
 		//show and hide appropriate boxes
 	changeSelectMenu = function (obj) {
