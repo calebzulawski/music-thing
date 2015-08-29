@@ -3,28 +3,60 @@
 <head>
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script src="/components/jquery/dist/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
-<script src="/components/matter-js/build/matter.min.js"></script>
 <script src="/components/flocking/dist/flocking-no-jquery.min.js"></script>
 
+<script src="/components/matter-js/build/matter.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
+
+
 <script src="/js/soundEngine.js"></script>
+<script src="/js/physicsEngine.js"></script>
+<script src="/js/jqueries.js"></script>
+
 
 <title>Physics test</title>
 </head>
 <body>
-	<button  class="btn btn-success" id="newCannon">New Cannon</button>
-	<button  class="btn btn-info" id="newBox">New Obstacle</button>
+	<div class="col col-md-8">
+	<form id="newItemSelection">
+	  <input type="radio" name="newItemType" value="cannon" checked>Cannon
+	  <br>
+	  <input type="radio" name="newItemType" value="obstacle">Obstacle
+	</form>
+
 
 <div id="phy-engine"></div>
-<div class="panel panel-default">
-  <div class="panel-body">
-    Hi
+</div>
+<div class="panel panel-default  col col-md-4">
+  <div class="panel-body" id="obstacleOptions">
+  	Rotation:
+	<input type="range"></input>
+  </div>
+  <div class="panel-body" id="cannonOptions">
+  	Velocity:
+	<input type="range"></input>
+	Launch Rate:
+	<input type="range"></input>
+	<br>
+	Osc Type:
+	<form id="types">
+	  <input type="radio" name="type" value="male" checked>Sine
+	  <br>
+	  <input type="radio" name="type" value="female">Square
+	  <br>
+	  <input type="radio" name="type" value="male">Triangle
+	</form>
+	<br>
+	Scale:
+	<select>
+		<option value="dorian">Dorian</option>
+		<option value="mixolydian">Mixolydian</option>
+		<option value="minor">Minor</option>
+	</select>
+
   </div>
 </div>
 </body>
-
-
-<script src="/js/physicsEngine.js"></script>
-<script src="/js/jqueries.js"></script>
 
 </html>
