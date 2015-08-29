@@ -39,6 +39,7 @@ var moveBody = function (mouseConstraint) {
 	//if clicking static
 	if (mouseConstraint.mouse.button == 0 && mouseConstraint.constraint.bodyB) {
 		if (mouseConstraint.constraint.bodyB.isStatic) {
+			changeSelectMenu(bodies[mouseConstraint.constraint.bodyB.id])
 			Matter.Body.translate(
 				mouseConstraint.constraint.bodyB,
 				subtractVector(mouseConstraint.mouse.position, mouseConstraint.constraint.bodyB.position)
@@ -61,7 +62,7 @@ var addBody = function (mouseConstraint) {
 			body: thisBox,
 			synth: {},
 			effect: {},
-			type: typeToAdd
+			boxtype: typeToAdd
 		}
 
 		Matter.World.add(engine.world, thisBox);	
