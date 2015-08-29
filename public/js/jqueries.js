@@ -27,12 +27,20 @@ $(document).ready(function () {
 		}
 	}
 
+
+
 	//change what type of wave to play
 	$('#waves').on('change', function (currentlySelectedObj) {
-
 		//the value to make it:
 		$("#types input[type='radio']:checked").val();
+	})
 
+	$('#rotator').on('change', function (currentlySelectedObj) {
+		Matter.Body.rotate(currentlySelectedBody.body, $('#rotator').val() - currentlySelectedBody.body.angle * (Math.PI / 180))
+	})
+
+	$('#newItemSelection').on('change', function () {
+		typeToAdd = $("#newItemSelection input[type='radio']:checked").val();
 	})
 
 
