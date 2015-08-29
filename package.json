@@ -7,7 +7,8 @@
     "express": "^4.13.3",
     "flocking": "git://github.com/colinbdclark/Flocking.git",
     "infusion": "git://github.com/fluid-project/infusion.git",
-    "matter-js": "^0.8.0"
+    "matter-js": "^0.8.0",
+    "nodemon": "^1.4.1"
   },
   "main": "index.js",
   "engines": {
