@@ -31,15 +31,15 @@ var phyEngine = function () {
 
 	Matter.Events.on(engine, 'tick', function (event) {
 		moveBody(mouseConstraint);
+		addBody(mouseConstraint);
 	});
-	$('#newBox').on('click', newBox)
 }
 
 var moveBody = function (mouseConstraint) {
 	//if clicking static
 	if (mouseConstraint.mouse.button == 0 && mouseConstraint.constraint.bodyB) {
 		if (mouseConstraint.constraint.bodyB.isStatic) {
-			console.log(mouseConstraint.bodyB)
+			changeSelectMenu(bodies[mouseConstraint.constraint.bodyB.id])
 			Matter.Body.translate(
 				mouseConstraint.constraint.bodyB,
 				subtractVector(mouseConstraint.mouse.position, mouseConstraint.constraint.bodyB.position)
@@ -48,27 +48,32 @@ var moveBody = function (mouseConstraint) {
 	}
 };
 
+var addBody = function (mouseConstraint) {
+	if (mouseConstraint.mouse.button == 0 && !mouseConstraint.constraint.bodyB) {
+		var thisBox = Matter.Bodies.rectangle(
+			mouseConstraint.mouse.position.x,
+			mouseConstraint.mouse.position.y,
+			80,
+			80,
+			{ isStatic: true, }
+		);
+
+		bodies[thisBox.id] = {
+			body: thisBox,
+			synth: {},
+			effect: {},
+			boxtype: typeToAdd
+		}
+
+		Matter.World.add(engine.world, thisBox);	
+	}
+};
+
 function subtractVector(v1, v2) {
 	newVec = Matter.Vector;
 	newVec.x = v1.x - v2.x;
 	newVec.y = v1.y - v2.y;
 	return newVec;
-}
-
-var newBox = function () {
-	console.log("hey")
-	var thisBox = Matter.Bodies.rectangle(400, 200, 80, 80, {
-		isStatic: true,
-	});
-
-	bodies[thisBox.id] = {
-		body: thisBox,
-		synth: {},
-		effect: {},
-		type: {}
-	}
-
-	Matter.World.add(engine.world, thisBox);
 }
 
 
