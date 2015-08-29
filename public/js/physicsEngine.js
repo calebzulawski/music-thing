@@ -33,14 +33,12 @@ var phyEngine = function () {
 		moveBody(mouseConstraint);
 		addBody(mouseConstraint);
 	});
-	$('#newBox').on('click', newBox)
 }
 
 var moveBody = function (mouseConstraint) {
 	//if clicking static
 	if (mouseConstraint.mouse.button == 0 && mouseConstraint.constraint.bodyB) {
 		if (mouseConstraint.constraint.bodyB.isStatic) {
-			console.log(mouseConstraint.bodyB)
 			Matter.Body.translate(
 				mouseConstraint.constraint.bodyB,
 				subtractVector(mouseConstraint.mouse.position, mouseConstraint.constraint.bodyB.position)
