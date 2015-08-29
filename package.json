@@ -5,7 +5,8 @@
     "author": "Caleb Zulawski and Nick Ellsworth",
     "dependencies": {
         "infusion": "git://github.com/fluid-project/infusion.git",
-        "flocking": "git://github.com/colinbdclark/Flocking.git"
+        "flocking": "git://github.com/colinbdclark/Flocking.git",
+        "matter-js": "^0.8.0"
     },
     "main": "index.js",
     "engines": {
