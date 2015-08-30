@@ -20,12 +20,12 @@ var phyEngine = function () {
 
 	//detect collisions
 	Matter.Events.on(engine, "collisionStart", function (event) {
-		// var pitches = ['c', 'e', 'g', 'b']
-		// var randPitch = pitches[Math.round(Math.random() * 3)]
+		var pitches = ['c', 'd', 'eb', 'f', 'g', 'a', 'bb']
+		var randPitch = pitches[Math.round(Math.random() * 8)]
 		for (var i = 0; i < event.pairs.length; i++) {
-			// tones.play(randPitch)
-			// console.log(event.pairs[i].bodyA)
-			// console.log(event.pairs[i].bodyB)
+			tones.play(randPitch)
+			console.log(event.pairs[i].bodyA)
+			console.log(event.pairs[i].bodyB)
 		}
 	})
 
@@ -50,13 +50,32 @@ var moveBody = function (mouseConstraint) {
 
 var addBody = function (mouseConstraint) {
 	if (mouseConstraint.mouse.button == 0 && !mouseConstraint.constraint.bodyB) {
-		var thisBox = Matter.Bodies.rectangle(
-			mouseConstraint.mouse.position.x,
-			mouseConstraint.mouse.position.y,
-			80,
-			80,
-			{ isStatic: true, }
-		);
+		console.log(typeToAdd)
+		var thisBox;
+		if (typeToAdd == "cannon") {
+			console.log("cannon added!")
+			thisBox = Matter.Bodies.circle(
+				mouseConstraint.mouse.position.x,
+				mouseConstraint.mouse.position.y,
+				20, {
+					isStatic: false,
+					restitution: 1
+				}
+			);
+		} else if (typeToAdd == "obstacle") {
+			console.log("obstacle added!")
+			thisBox = Matter.Bodies.rectangle(
+				mouseConstraint.mouse.position.x,
+				mouseConstraint.mouse.position.y,
+				Math.random() * 120,
+				Math.random() * 120, {
+					isStatic: true,
+					angle: Math.random() * 50,
+					restitution: 1
+				}
+			);
+		}
+
 
 		bodies[thisBox.id] = {
 			body: thisBox,
@@ -65,9 +84,15 @@ var addBody = function (mouseConstraint) {
 			boxtype: typeToAdd
 		}
 
-		Matter.World.add(engine.world, thisBox);	
+		Matter.World.add(engine.world, thisBox);
 	}
 };
+
+setInterval(function () {
+		var bullet = Matter.bodies.circle(20, 20, 20)
+		Matter.World.add(engine.world, bullet)
+	},
+	50)
 
 function subtractVector(v1, v2) {
 	newVec = Matter.Vector;
