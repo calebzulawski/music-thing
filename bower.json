@@ -3,8 +3,9 @@
   "version": "0.0.1",
   "dependencies": {
     "flocking": "",
+    "jquery": "",
     "matter-js": "~0.8.0",
-    "jquery": ""
+    "react": "~0.13.3"
   },
   "private": true
 }

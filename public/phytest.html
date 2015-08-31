@@ -3,56 +3,30 @@
 <head>
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
-<script src="/components/jquery/dist/jquery.min.js"></script>
-<script src="/components/flocking/dist/flocking-no-jquery.min.js"></script>
-<script src="/components/matter-js/build/matter.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="/components/jquery/dist/jquery.js"></script>
+<script src="/components/flocking/dist/flocking-no-jquery.js"></script>
+<script src="/components/matter-js/build/matter.js"></script>
+<script src="/components/react/react.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 <script src="/js/soundEngine.js"></script>
 <script src="/js/tones.js"></script>
 <script src="/js/physicsEngine.js"></script>
-<script src="/js/jqueries.js"></script>
+<script src="/js/controls.js"></script>
+<script src="/jsx/ui.js"></script>
 
 <title>Physics test</title>
 </head>
 <body>
-	<div class="col col-md-8">
+<div class="col col-md-8">
 	<form id="newItemSelection">
 	  <input type="radio" name="newItemType" value="cannon" checked>Cannon
 	  <br>
 	  <input type="radio" name="newItemType" value="obstacle">Obstacle
 	</form>
-
-
-<div id="phy-engine"></div>
+	<div id="phy-engine"></div>
 </div>
 <div class="panel panel-default  col col-md-4">
-  <div class="panel-body" id="obstacleOptions">
-  	Rotation:
-	<input type="range" id="rotator" mix="0" max="360"></input>
-  </div>
-  <div class="panel-body" id="cannonOptions">
-  	Velocity:
-	<input type="range" id=""></input>
-	Launch Rate:
-	<input type="range"></input>
-	<br>
-	Osc Type:
-	<form id="waves">
-	  <input type="radio" name="type" value="male" checked>Sine
-	  <br>
-	  <input type="radio" name="type" value="female">Square
-	  <br>
-	  <input type="radio" name="type" value="male">Triangle
-	</form>
-	<br>
-	Scale:
-	<select>
-		<option value="dorian">Dorian</option>
-		<option value="mixolydian">Mixolydian</option>
-		<option value="minor">Minor</option>
-	</select>
-
-  </div>
+	<div class="config-div"></div>
 </div>
 </body>
 </html>
