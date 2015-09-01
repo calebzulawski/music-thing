@@ -33,15 +33,15 @@ $(document).ready(function () {
 	console.log('Physics engine loaded.');
 
 	//detect collisions
+	/*
 	Matter.Events.on(engine, "collisionStart", function (event) {
 		var pitches = ['c', 'd', 'eb', 'f', 'g', 'a', 'bb']
 		var randPitch = pitches[Math.round(Math.random() * 8)]
 		for (var i = 0; i < event.pairs.length; i++) {
 			tones.play(randPitch)
-			console.log(event.pairs[i].bodyA)
-			console.log(event.pairs[i].bodyB)
 		}
 	});
+	*/
 
 	Matter.Events.on(engine, 'tick', function (event) {
 		clickOnBody(mouseConstraint);
@@ -95,11 +95,21 @@ $(document).ready(function () {
 	};
 
 	Matter.Events.on(engine, 'beforeUpdate', function (event) {
+		if (engine.timing.timeScale === 0) { return }
 		for (key in bodies) {
 			obj = bodies[key];
-			if (obj.type === 'cannon') {
-				if (obj.cannon.lastUpdate + obj.cannon.interval > event.timestamp) {
+			if (obj.boxtype === 'cannon') {
+				if ((event.timestamp - obj.cannon.lastUpdate) > obj.cannon.interval) {
+					// update timestamp
+					obj.cannon.lastUpdate = event.timestamp;
 					// Create the projectile
+					var thisCircle = Matter.Bodies.circle(
+						obj.body.position.x,
+						obj.body.position.y,
+						20,
+						{ isStatic: false }
+					);
+					Matter.World.add(engine.world, thisCircle);
 				}
 			}
 		}
