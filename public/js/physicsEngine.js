@@ -5,6 +5,10 @@ var constants = {
 	obstacleSizeMax: 1000
 };
 
+// Engine interface functions
+var enginePlay;
+var enginePause;
+
 // Run the physics engine
 $(document).ready(function () {
 	// bodies list
@@ -12,6 +16,12 @@ $(document).ready(function () {
 
 	// Create Matter.js engine
 	var engine = Matter.Engine.create($("#phy-engine")[0]);
+
+	// Pause the engine
+	engine.timing.timeScale = 0;
+
+	// Store default delta
+	var deltaInitial = engine.delta;
 
 	// Create Matter.js MouseConstraint
 	var mouseConstraint = Matter.MouseConstraint.create(engine)
@@ -72,11 +82,44 @@ $(document).ready(function () {
 				body: thisBox,
 				synth: {},
 				effect: {},
-				boxtype: typeToAdd
-			}
+				boxtype: typeToAdd,
+				cannon: {
+					interval: 1000,
+					lastUpdate: engine.timing.timestamp,
+					speed: 0.001
+				}
+			};
 
 			Matter.World.add(engine.world, thisBox);
 		};
 	};
+
+	Matter.Events.on(engine, 'beforeUpdate', function (event) {
+		for (key in bodies) {
+			obj = bodies[key];
+			if (obj.type === 'cannon') {
+				if (obj.cannon.lastUpdate + obj.cannon.interval > event.timestamp) {
+					// Create the projectile
+				}
+			}
+		}
+	});
+
+	var emitProjectile = function (sourceObj) {
+		if (sourceObj) {
+			velocity = Matter.Vector({x: 1, y: 0});
+			Matter.Vector.rotate(velocity, sourceObj.body.angle);
+		} else {
+			velocity = Matter.Vector;
+		}
+	};
+
+	enginePause = function () {
+		engine.timing.timeScale = 0;
+	}
+
+	enginePlay = function () {
+		engine.timing.timeScale = 1;
+	}
 
 });
